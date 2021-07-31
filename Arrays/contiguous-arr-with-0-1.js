@@ -24,11 +24,11 @@ module.exports = {
   solve : function(A){
     let map = {0: -1}, n = A.length;
     
-    for (let i = 0; i < n; i++) {
-        if (A[i] === 0) {
-            A[i] = -1;
-        } 
-    }
+    // for (let i = 0; i < n; i++) {
+    //     if (A[i] === 0) {
+    //         A[i] = -1;
+    //     } 
+    // }
     
     let sum = 0;
     let diff = 0, temp;
@@ -52,14 +52,15 @@ module.exports = {
     
     // method2: using Prefix sum with no array
     for (let i = 0; i < n; i++) {
-        sum += A[i];
-        if (sum in map) {
-            if (diff < (i - map[sum])) {
-                diff = i - map[sum];
-            }
-        } else {
-            map[sum] = i;
-        }
+      
+      if (A[i] === 0) sum--;
+      else sum++;
+
+      if (sum in map) {
+        diff = Math.max(diff, i - map[sum]);
+      } else {
+        map[sum] = i;
+      }
     }
     
     return diff;
