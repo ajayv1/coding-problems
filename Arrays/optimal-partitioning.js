@@ -36,8 +36,6 @@ module.exports = {
   solve : function(A){
     let n = A.length;
     
-    if (this.isDuplicateExist(A)) return 0;
-    
     A.sort((a,b) => a-b);
     
     let min = Number.MAX_SAFE_INTEGER;
@@ -49,18 +47,5 @@ module.exports = {
     }
     
     return min;
-  },
-  
-  isDuplicateExist: function (A) {
-    let map = {}, n = A.length;
-    
-    for (let i = 0; i < n; i++) {
-        if (A[i] in map) {
-            return true;
-        }
-        map[A[i]] = true;
-    }
-    
-    return false;
   }
 }; 
